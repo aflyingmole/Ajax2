@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>1/test1.html</title>
+</head>
+<body>
+<div id="result"></div>
+<button id="btn1" >click1</button>
+<!-- ajax로 회원목록받아와 출력해 보세요 /ajax02/mem/list-->
+<div id="list"></div>
+<button id="btn2" >click2</button>
+
+<script type="text/javascript">
+	document.getElementById("btn1").onclick=function(){
+		const result=document.getElementById("result");
+        const xhr=new XMLHttpRequest();
+        xhr.onload=function(){
+			const data=xhr.responseText;
+			const mem=JSON.parse(data);
+			const date=new Date(mem.regdate);
+			const sdate=date.getFullYear() +"년"+ (date.getMonth()+1)+"월" + date.getDate() +"일";
+			const h=mem.id +","  + mem.pwd +"," + mem.email+"," + mem.age +"," + sdate;
+			result.innerHTML=h;
+		}
+        xhr.open('get','/ajax02/mem/info',true);
+		xhr.send();
+	}
+	document.getElementById("btn2").onclick=function(){//3:15
+		const list=document.getElementById("list");
+        const xhr=new XMLHttpRequest();
+        xhr.onload=function(){
+			const data=xhr.responseText;
+			const json=JSON.parse(data);
+			console.log(json);
+			for(let i=0;i<json.list.length;i++){
+				const mem=json.list[i];
+				const html="아이디:" + mem.id +",비밀번호:"+ mem.pwd +",이메일:" + mem.email
+				           +"나이:"+ mem.age +",가입날짜:" + mem.regdate;
+				list.innerHTML += html +"<br>";
+			}		
+		}
+        xhr.open('get','/ajax02/mem/list',true);
+		xhr.send();
+	}
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+

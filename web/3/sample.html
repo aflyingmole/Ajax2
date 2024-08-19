@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>sample.html</title>
+</head>
+<body>
+<input type="button" value="sample" id="btn1">
+<div id="result"></div>
+<script type="text/javascript">
+    document.getElementById("btn1").onclick = function () {
+        fetch("/sample/fetch")
+            .then(function (data) {
+                console.log(data);
+                return data.json();
+            })
+            .then(function (mem) {
+                console.log(mem);
+                const result = document.getElementById("result");
+                result.innerHTML = "아이디 : " + mem.id + "<br>"
+                    + "이메일 : " + mem.email + "<br>"
+                    + "비밀번호 : " + mem.pwd + "<br>"
+                    + "나이 : " + mem.age;
+            });
+    };
+</script>
+</body>
+</html>

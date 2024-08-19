@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>join.html</title>
+</head>
+<script type="text/javascript">
+	let xhr;
+	function idCheck(){
+		const id=document.getElementById("id").value;
+		xhr=new XMLHttpRequest();
+		xhr.onreadystatechange=callback;
+		xhr.open("get","idcheck.jsp?id="+ id,true);
+		xhr.send();
+	}
+	function callback(){
+		if(xhr.readyState==4 && xhr.status==200){
+			const data=xhr.responseText;
+			const json=JSON.parse(data);
+			const span=document.getElementById("idcheck");
+			if(json.exist==true){
+				span.innerHTML="사용중인 아이디입니다.";
+			}else{
+				span.innerHTML="사용가능한 아이디입니다.";
+			}
+		}
+	}
+</script>
+<body>
+<h1>회원가입</h1>
+<form method="post" action="join.jsp">
+	아이디 <input type="text" name="id" id="id" >
+	<!-- json을 사용해서 해보세요!!!! 퀴즈 / 0813 폴더에 코드 올리세요. -->
+	<input type="button" value="중복확인" onclick="idCheck()">
+	<span id="idcheck"></span>
+	<br>
+	비밀번호 <input type="password" name="pwd"><br>
+	이메일 <input type="text" name="email"><br>
+	<input type="submit" value="가입">
+</form>
+</body>
+</html>

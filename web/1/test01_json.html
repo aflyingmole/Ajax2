@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>1/test01_json.html</title>
+</head>
+<body>
+<!-- 
+	[ JSON ]
+	- 서로 다른 프로그래밍 언어간의 데이터 통신을 위한 표기법(읽고 쓰기 쉬운 표현법)
+	- 경량의 데이터를 교환하는 방식으로 인터넷에서 데이터를 주고받을때 표현하는 방법
+	- name/value 형태의 한쌍으로 표현된다.
+ -->
+ <script type="text/javascript">
+ 	const user={"id":"hello","pwd":"1234"};
+ 	console.log(user.id,user.pwd);
+ 	const users=[{"id":"hello","pwd":"1234"},{"id":"aaa","pwd":"1111"},{"id":"bbb","pwd":"2222"}];
+ 	for(let i=0;i<users.length;i++){
+ 		console.log(users[i].id,users[i].pwd);
+ 	}
+ 	//도서정보(도서명,저자,가격)를 3개 담는 json배열을 만들고 값 저장후 출력해 보세요
+ 	var books=[
+ 			{"title":"java8","author":"홍길동","price":20000},
+ 			{"title":"jsp","author":"이길동","price":10000},
+ 			{"title":"javascript","author":"삼길동","price":30000}
+ 	];
+ 	for(let i=0;i<books.length;i++){
+ 		console.log(books[i].title,books[i].author,books[i].price);
+ 	}
+ 	let member={
+ 		"grade":"gold",
+ 		"mems":[{"id":"ccc","pwd":"0000"},{"id":"ddd","pwd":"2222"},{"id":"eee","pwd":"2333"}]
+ 	};
+ 	console.log("등급",member.grade);
+ 	for(let i=0;i<member.mems.length;i++){
+ 		console.log(member.mems[i].id,member.mems[i].pwd);
+ 	}
+ </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
